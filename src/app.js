@@ -1,14 +1,14 @@
 import "./style.css";
 var pronoun = ["the", "our"];
-var pronoun = ["the", "our"];
 var adj = ["great", "big"];
 var noun = ["jogger", "racoon"];
-var extensions = [".com", ".net", ".us", ".io", ".es"];
+var extensions = [".com", ".es", ".net", ".us", ".io"];
 
-var generatorButton = document.getElementById("domain-generator");
-var domainContainer = document.getElementById("domain-container");
+var generateBtn = document.getElementById("generateBtn");
+var domainList = document.getElementById("domainList");
+var counter = 1;
 
-generatorButton.addEventListener("click", generateDomain);
+generateBtn.addEventListener("click", generateDomain);
 
 function generateDomain() {
   var randomPronoun = pronoun[Math.floor(Math.random() * pronoun.length)];
@@ -17,11 +17,11 @@ function generateDomain() {
   var randomExtension =
     extensions[Math.floor(Math.random() * extensions.length)];
 
-  var domain = randomPronoun + randomAdj + randomNoun + randomExtension;
+  var domain =
+    counter + ". " + randomPronoun + randomAdj + randomNoun + randomExtension;
+  var listItem = document.createElement("li");
+  listItem.textContent = domain;
+  domainList.appendChild(listItem);
 
-  var domainElement = document.createElement("div");
-  domainElement.textContent = domain;
-
-  domainContainer.innerHTML = "";
-  domainContainer.appendChild(domainElement);
+  counter++;
 }
